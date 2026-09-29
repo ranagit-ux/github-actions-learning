@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      # Azure Service Principal login
       - name: Azure Login
         uses: azure/login@v3
         with:
@@ -25,15 +26,27 @@ jobs:
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
             }
 
+      # Verify Azure connection
       - name: Verify Azure
         run: |
           az account show
 
+      # Install Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      # Check Terraform
+      - name: Terraform Version
+        run: terraform version
+
+      # Initialize Terraform
       - name: Terraform Init
         run: terraform init
 
+      # Terraform Plan
       - name: Terraform Plan
         run: terraform plan
 
+      # Terraform Apply
       - name: Terraform Apply
         run: terraform apply -auto-approve
