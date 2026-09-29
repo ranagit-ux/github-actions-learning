@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "pipelinetest" {
 
-  name = "RG-Pipeline"
+  name = "RG-gitPipeline"
   location = "westus"
   
 }
