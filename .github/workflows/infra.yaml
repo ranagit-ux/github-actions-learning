@@ -1,10 +1,16 @@
 
 name: Azure Infrastructure
-
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: Select deployment environment
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+        required: true
 
 permissions:
   id-token: write
